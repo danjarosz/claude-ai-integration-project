@@ -26,6 +26,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   │   ├── page.tsx        # Home page (/)
 │   │   ├── globals.css     # Global styles
 │   │   ├── favicon.ico
+│   │   ├── about/
+│   │   │   └── page.tsx    # About page (/about)
 │   │   ├── blog/
 │   │   │   └── page.tsx    # Blog page (/blog)
 │   │   └── preview/
@@ -41,3 +43,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ├── postcss.config.mjs      # PostCSS configuration
 └── package.json
 ```
+
+## Conventions
+
+- When adding a new page component, always add a link to that page in the navigation (`src/app/layout.tsx`)
+- Always update CLAUDE.md with the project structure when new files are added

@@ -39,6 +39,9 @@ export default function RootLayout({
             <li>
               <Link href="/preview" className="hover:underline">Preview</Link>
             </li>
+            <li>
+              <Link href="/about" className="hover:underline">About</Link>
+            </li>
           </ul>
         </nav>
         {children}
