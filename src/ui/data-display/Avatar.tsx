@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef, useState } from "react";
 import { cn } from "../utils/cn";
 import type { BaseUIProps, Size } from "../types";
