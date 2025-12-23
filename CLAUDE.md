@@ -65,6 +65,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   │   │   ├── Table.tsx
 │   │   │   ├── DescriptionList.tsx
 │   │   │   ├── Avatar.tsx
+│   │   │   ├── InitialsAvatar.tsx  # Initials-only avatar
 │   │   │   └── Meter.tsx   # Progress and Meter
 │   │   ├── navigation/     # Navigation components
 │   │   │   ├── Link.tsx
@@ -107,7 +108,7 @@ All components support dual dark mode:
 - **Typography**: Heading, Text, Code, Pre, Kbd, Blockquote, List
 - **Forms**: Button, Input, Textarea, Select, Checkbox, Radio, Label, Form
 - **Layout**: Container, Card, Divider, Stack, Grid, Section
-- **Data Display**: Badge, Table, DescriptionList, Avatar, Progress, Meter
+- **Data Display**: Badge, Table, DescriptionList, Avatar, InitialsAvatar, Progress, Meter
 - **Navigation**: Link, NavLink, Breadcrumb, Menu, Tabs
 - **Feedback**: Alert, Spinner, Skeleton
 

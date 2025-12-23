@@ -34,3 +34,6 @@ export type { AvatarProps } from "./Avatar";
 
 export { Progress, Meter } from "./Meter";
 export type { ProgressProps, MeterProps } from "./Meter";
+
+export { InitialsAvatar } from "./InitialsAvatar";
+export type { InitialsAvatarProps } from "./InitialsAvatar";
