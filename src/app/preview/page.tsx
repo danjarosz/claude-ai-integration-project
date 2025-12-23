@@ -23,7 +23,6 @@ import {
   Spinner,
   Progress,
   Avatar,
-  Skeleton,
   SkeletonText,
 } from "@/ui";
 

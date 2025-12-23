@@ -111,6 +111,7 @@ export {
   DescriptionTerm,
   DescriptionDetails,
   Avatar,
+  InitialsAvatar,
   Progress,
   Meter,
 } from "./data-display";
@@ -126,6 +127,7 @@ export type {
   DescriptionTermProps,
   DescriptionDetailsProps,
   AvatarProps,
+  InitialsAvatarProps,
   ProgressProps,
   MeterProps,
 } from "./data-display";

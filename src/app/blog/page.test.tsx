@@ -19,9 +19,9 @@ describe("BlogPage", () => {
     expect(screen.getByText("Another sample blog post.")).toBeInTheDocument();
   });
 
-  it("should render two articles", () => {
+  it("should render two posts", () => {
     render(<BlogPage />);
-    const articles = screen.getAllByRole("article");
-    expect(articles).toHaveLength(2);
+    const postHeadings = screen.getAllByRole("heading", { level: 2 });
+    expect(postHeadings).toHaveLength(2);
   });
 });
