@@ -8,6 +8,7 @@ import {
   Option,
   Checkbox,
   Label,
+  Toggle,
   Heading,
   Text,
   Code,
@@ -24,6 +25,7 @@ import {
   Progress,
   Avatar,
   SkeletonText,
+  ProductCard,
 } from "@/ui";
 
 export default function PreviewPage() {
@@ -135,6 +137,89 @@ export default function PreviewPage() {
                   </Select>
                 </div>
                 <Checkbox label="I agree to terms" theme="dark" />
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
+      </section>
+
+      <Divider spacing="lg" />
+
+      {/* Toggle Switches */}
+      <section className="mb-12">
+        <Heading level={2} className="mb-4">
+          Toggle Switches
+        </Heading>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Light Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <Toggle variant="primary" label="Primary" defaultChecked />
+                <Toggle variant="secondary" label="Secondary" defaultChecked />
+                <Toggle variant="success" label="Success" defaultChecked />
+                <Toggle variant="warning" label="Warning" defaultChecked />
+                <Toggle variant="danger" label="Danger" defaultChecked />
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Dark Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <Toggle variant="primary" label="Primary" theme="dark" defaultChecked />
+                <Toggle variant="secondary" label="Secondary" theme="dark" defaultChecked />
+                <Toggle variant="success" label="Success" theme="dark" defaultChecked />
+                <Toggle variant="warning" label="Warning" theme="dark" defaultChecked />
+                <Toggle variant="danger" label="Danger" theme="dark" defaultChecked />
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} align="center">
+                  <Toggle size="sm" label="Small" />
+                  <Toggle size="md" label="Medium" />
+                  <Toggle size="lg" label="Large" />
+                </HStack>
+                <Toggle disabled label="Disabled" />
+                <Toggle
+                  label="With Description"
+                  description="This is a helpful description for the toggle option."
+                />
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} align="center">
+                  <Toggle size="sm" label="Small" theme="dark" />
+                  <Toggle size="md" label="Medium" theme="dark" />
+                  <Toggle size="lg" label="Large" theme="dark" />
+                </HStack>
+                <Toggle disabled label="Disabled" theme="dark" />
+                <Toggle
+                  label="With Description"
+                  description="This is a helpful description for the toggle option."
+                  theme="dark"
+                />
               </VStack>
             </CardBody>
           </Card>
@@ -349,6 +434,191 @@ export default function PreviewPage() {
             </HStack>
           </CardBody>
         </Card>
+      </section>
+
+      <Divider spacing="lg" />
+
+      {/* Product Cards */}
+      <section className="mb-12">
+        <Heading level={2} className="mb-4">
+          Product Cards
+        </Heading>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card theme="light" padding="lg">
+            <CardHeader>
+              <Text weight="semibold">Light Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <HStack gap={4} wrap align="start">
+                <ProductCard
+                  name="Primary Product"
+                  price={29.99}
+                  href="/products/primary"
+                  variant="primary"
+                  size="sm"
+                />
+                <ProductCard
+                  name="Secondary Product"
+                  price={49.99}
+                  href="/products/secondary"
+                  variant="secondary"
+                  size="sm"
+                />
+                <ProductCard
+                  name="Success Product"
+                  price={19.99}
+                  href="/products/success"
+                  variant="success"
+                  size="sm"
+                />
+                <ProductCard
+                  name="Danger Product"
+                  price={99.99}
+                  href="/products/danger"
+                  variant="danger"
+                  size="sm"
+                />
+                <ProductCard
+                  name="Warning Product"
+                  price={39.99}
+                  href="/products/warning"
+                  variant="warning"
+                  size="sm"
+                />
+              </HStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark" padding="lg">
+            <CardHeader>
+              <Text weight="semibold">Dark Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <HStack gap={4} wrap align="start">
+                <ProductCard
+                  name="Primary Product"
+                  price={29.99}
+                  href="/products/primary"
+                  variant="primary"
+                  size="sm"
+                  theme="dark"
+                />
+                <ProductCard
+                  name="Secondary Product"
+                  price={49.99}
+                  href="/products/secondary"
+                  variant="secondary"
+                  size="sm"
+                  theme="dark"
+                />
+                <ProductCard
+                  name="Success Product"
+                  price={19.99}
+                  href="/products/success"
+                  variant="success"
+                  size="sm"
+                  theme="dark"
+                />
+                <ProductCard
+                  name="Danger Product"
+                  price={99.99}
+                  href="/products/danger"
+                  variant="danger"
+                  size="sm"
+                  theme="dark"
+                />
+                <ProductCard
+                  name="Warning Product"
+                  price={39.99}
+                  href="/products/warning"
+                  variant="warning"
+                  size="sm"
+                  theme="dark"
+                />
+              </HStack>
+            </CardBody>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <Card theme="light" padding="lg">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} wrap align="start">
+                  <ProductCard
+                    name="Small"
+                    price={9.99}
+                    href="/products/small"
+                    size="sm"
+                  />
+                  <ProductCard
+                    name="Medium"
+                    price={29.99}
+                    href="/products/medium"
+                    size="md"
+                  />
+                  <ProductCard
+                    name="Large"
+                    price={49.99}
+                    href="/products/large"
+                    size="lg"
+                  />
+                </HStack>
+                <ProductCard
+                  name="Disabled Product"
+                  price={19.99}
+                  href="/products/disabled"
+                  disabled
+                  size="sm"
+                />
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark" padding="lg">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} wrap align="start">
+                  <ProductCard
+                    name="Small"
+                    price={9.99}
+                    href="/products/small"
+                    size="sm"
+                    theme="dark"
+                  />
+                  <ProductCard
+                    name="Medium"
+                    price={29.99}
+                    href="/products/medium"
+                    size="md"
+                    theme="dark"
+                  />
+                  <ProductCard
+                    name="Large"
+                    price={49.99}
+                    href="/products/large"
+                    size="lg"
+                    theme="dark"
+                  />
+                </HStack>
+                <ProductCard
+                  name="Disabled Product"
+                  price={19.99}
+                  href="/products/disabled"
+                  disabled
+                  size="sm"
+                  theme="dark"
+                />
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
       </section>
     </main>
   );

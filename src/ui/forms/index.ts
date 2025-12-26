@@ -24,3 +24,6 @@ export type { FieldsetProps, LegendProps } from "./Fieldset";
 
 export { Form, FormField, FormMessage } from "./Form";
 export type { FormProps, FormFieldProps, FormMessageProps } from "./Form";
+
+export { Toggle } from "./Toggle";
+export type { ToggleProps, ToggleVariant } from "./Toggle";

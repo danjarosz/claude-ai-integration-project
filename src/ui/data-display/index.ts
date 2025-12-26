@@ -37,3 +37,6 @@ export type { ProgressProps, MeterProps } from "./Meter";
 
 export { InitialsAvatar } from "./InitialsAvatar";
 export type { InitialsAvatarProps } from "./InitialsAvatar";
+
+export { ProductCard } from "./ProductCard";
+export type { ProductCardProps, ProductCardVariant } from "./ProductCard";
