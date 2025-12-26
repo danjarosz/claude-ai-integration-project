@@ -8,6 +8,7 @@ import {
   Option,
   Checkbox,
   Label,
+  Toggle,
   Heading,
   Text,
   Code,
@@ -135,6 +136,89 @@ export default function PreviewPage() {
                   </Select>
                 </div>
                 <Checkbox label="I agree to terms" theme="dark" />
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
+      </section>
+
+      <Divider spacing="lg" />
+
+      {/* Toggle Switches */}
+      <section className="mb-12">
+        <Heading level={2} className="mb-4">
+          Toggle Switches
+        </Heading>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Light Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <Toggle variant="primary" label="Primary" defaultChecked />
+                <Toggle variant="secondary" label="Secondary" defaultChecked />
+                <Toggle variant="success" label="Success" defaultChecked />
+                <Toggle variant="warning" label="Warning" defaultChecked />
+                <Toggle variant="danger" label="Danger" defaultChecked />
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Dark Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <Toggle variant="primary" label="Primary" theme="dark" defaultChecked />
+                <Toggle variant="secondary" label="Secondary" theme="dark" defaultChecked />
+                <Toggle variant="success" label="Success" theme="dark" defaultChecked />
+                <Toggle variant="warning" label="Warning" theme="dark" defaultChecked />
+                <Toggle variant="danger" label="Danger" theme="dark" defaultChecked />
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} align="center">
+                  <Toggle size="sm" label="Small" />
+                  <Toggle size="md" label="Medium" />
+                  <Toggle size="lg" label="Large" />
+                </HStack>
+                <Toggle disabled label="Disabled" />
+                <Toggle
+                  label="With Description"
+                  description="This is a helpful description for the toggle option."
+                />
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Sizes & States</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={4} align="start">
+                <HStack gap={4} align="center">
+                  <Toggle size="sm" label="Small" theme="dark" />
+                  <Toggle size="md" label="Medium" theme="dark" />
+                  <Toggle size="lg" label="Large" theme="dark" />
+                </HStack>
+                <Toggle disabled label="Disabled" theme="dark" />
+                <Toggle
+                  label="With Description"
+                  description="This is a helpful description for the toggle option."
+                  theme="dark"
+                />
               </VStack>
             </CardBody>
           </Card>

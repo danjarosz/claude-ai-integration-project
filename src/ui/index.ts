@@ -50,6 +50,7 @@ export {
   Form,
   FormField,
   FormMessage,
+  Toggle,
 } from "./forms";
 export type {
   ButtonProps,
@@ -66,6 +67,8 @@ export type {
   FormProps,
   FormFieldProps,
   FormMessageProps,
+  ToggleProps,
+  ToggleVariant,
 } from "./forms";
 
 // Layout
