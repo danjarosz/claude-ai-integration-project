@@ -1,9 +1,21 @@
+---
+description: Create a UI component in the src/ui directory
+argument-hint: component name | component summary 
+---
+
+## Context
+
+Parse $ARGUMENTS to get the following values:
+- [name]: Component name from $ARGUMENTS, converted to PascalCase
+- [summary]: Component summary from $ARGUMENTS
+
 ## Task
 
-Make a single UI component following these guidelines:
+Make a UI component according to the [name] and [summary] provided, following these instructions:
 
-- Create the component file in the `src/ui` directory.
-- Use a functional component with the name in PascalCase
+- Create the component file in the `src/ui/[name]/[name].tsx` directory.
+- Use a functional component with the name [name].
+- Reference the [summary] when making the component.
 
 ## Variants
 
