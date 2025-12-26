@@ -13,7 +13,7 @@ Parse $ARGUMENTS to get the following values:
 
 Make a UI component according to the [name] and [summary] provided, following these instructions:
 
-- Create the component file in the `src/ui/[name]/[name].tsx` directory.
+- Create the component file in the appropriate `src/ui/[category]/[Name].tsx` directory (e.g., `src/ui/forms/Toggle.tsx`, `src/ui/data-display/Badge.tsx`).
 - Use a functional component with the name [name].
 - Reference the [summary] when making the component.
 
@@ -36,5 +36,5 @@ Make a UI component according to the [name] and [summary] provided, following th
 
 ## Previews
 
-- Add the component to the `src/app/preview/page.tsx` file, o it can be viewed in the browser, and use multiple variants.
+- Add the component to the `src/app/preview/page.tsx` file, so it can be viewed in the browser, and use multiple variants.
 - Do not add the components to any other page.

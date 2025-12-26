@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useId } from "react";
 import { cn } from "../utils/cn";
 import type { BaseUIProps, Size } from "../types";
 
@@ -23,21 +23,21 @@ export interface ToggleProps
   description?: string;
 }
 
-const sizeStyles: Record<Extract<Size, "sm" | "md" | "lg">, { track: string; thumb: string; translate: string }> = {
+const sizeStyles: Record<Extract<Size, "sm" | "md" | "lg">, { track: string; thumb: string; thumbChecked: string }> = {
   sm: {
     track: "h-5 w-9",
     thumb: "h-4 w-4",
-    translate: "translate-x-4",
+    thumbChecked: "peer-checked:translate-x-4",
   },
   md: {
     track: "h-6 w-11",
     thumb: "h-5 w-5",
-    translate: "translate-x-5",
+    thumbChecked: "peer-checked:translate-x-5",
   },
   lg: {
     track: "h-7 w-14",
     thumb: "h-6 w-6",
-    translate: "translate-x-7",
+    thumbChecked: "peer-checked:translate-x-7",
   },
 };
 
@@ -85,7 +85,8 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
     },
     ref
   ) {
-    const toggleId = id || `toggle-${Math.random().toString(36).slice(2)}`;
+    const generatedId = useId();
+    const toggleId = id || generatedId;
     const sizeStyle = sizeStyles[size];
     const variantStyle = variantStyles[variant];
 
@@ -96,7 +97,6 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           "relative inline-flex cursor-pointer items-center",
           disabled && "cursor-not-allowed opacity-50"
         )}
-        data-theme={theme}
       >
         <input
           ref={ref}
@@ -121,7 +121,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
           <span
             className={cn(
               "absolute top-0.5 left-0.5 rounded-full bg-white shadow transition-transform duration-200",
-              "peer-checked:" + sizeStyle.translate,
+              sizeStyle.thumbChecked,
               sizeStyle.thumb
             )}
           />
@@ -129,7 +129,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
       </label>
     );
 
-    if (!label) return <div className={className}>{toggle}</div>;
+    if (!label) return <div className={className} data-theme={theme}>{toggle}</div>;
 
     return (
       <div className={cn("flex items-start gap-3", className)} data-theme={theme}>

@@ -43,8 +43,8 @@ describe("Toggle", () => {
 
   it("should set data-theme attribute", () => {
     const { container } = render(<Toggle theme="dark" />);
-    const label = container.querySelector("label");
-    expect(label).toHaveAttribute("data-theme", "dark");
+    const wrapper = container.firstChild;
+    expect(wrapper).toHaveAttribute("data-theme", "dark");
   });
 
   it("should be checked when defaultChecked is true", () => {
