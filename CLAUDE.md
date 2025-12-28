@@ -113,9 +113,24 @@ All components support dual dark mode:
 - **Navigation**: Link, NavLink, Breadcrumb, Menu, Tabs
 - **Feedback**: Alert, Spinner, Skeleton
 
+## Development Practices
+
+### Test Driven Development (TDD)
+
+Always use TDD when programming. Follow the Red-Green-Refactor cycle:
+
+1. **Red** - Write a failing test first that defines expected behavior
+2. **Green** - Write the minimum code necessary to make the test pass
+3. **Refactor** - Clean up the code while keeping tests passing
+
+Run tests frequently to maintain a fast feedback loop.
+
 ## Conventions
 
 - When adding a new page component, always add a link to that page in the navigation (`src/app/layout.tsx`)
 - Always update CLAUDE.md with the project structure when new files are added
 - Use UI components from `@/ui` for consistent styling
 - Components support `theme`, `size`, and `variant` props for customization
+- Always use context7 when I need code generation, setup or configuration steps, or
+  library/API documentation. This means you should automatically use the Context7 MCP
+  tools to resolve library id and get library docs without me having to explicitly ask.
