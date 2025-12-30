@@ -77,7 +77,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 │   │   └── feedback/       # Feedback components
 │   │       ├── Alert.tsx
 │   │       ├── Spinner.tsx
-│   │       └── Skeleton.tsx
+│   │       ├── Skeleton.tsx
+│   │       └── Modal.tsx    # Modal dialog with variants
 │   ├── components/         # App-specific components
 │   ├── hooks/              # Custom React hooks
 │   ├── lib/                # Utility functions and helpers
@@ -111,7 +112,7 @@ All components support dual dark mode:
 - **Layout**: Container, Card, Divider, Stack, Grid, Section
 - **Data Display**: Badge, Table, DescriptionList, Avatar, InitialsAvatar, ProductCard, Progress, Meter
 - **Navigation**: Link, NavLink, Breadcrumb, Menu, Tabs
-- **Feedback**: Alert, Spinner, Skeleton
+- **Feedback**: Alert, Spinner, Skeleton, Modal
 
 ## Development Practices
 

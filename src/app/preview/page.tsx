@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Button,
   Input,
@@ -26,9 +27,16 @@ import {
   Avatar,
   SkeletonText,
   ProductCard,
+  Modal,
 } from "@/ui";
+import type { ModalVariant, ModalSize } from "@/ui";
 
 export default function PreviewPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalVariant, setModalVariant] = useState<ModalVariant>("primary");
+  const [modalSize, setModalSize] = useState<ModalSize>("md");
+  const [modalTheme, setModalTheme] = useState<"light" | "dark">("light");
+
   return (
     <main className="min-h-screen p-8 max-w-6xl mx-auto">
       <Heading level={1} className="mb-2">
@@ -620,6 +628,158 @@ export default function PreviewPage() {
           </Card>
         </div>
       </section>
+
+      <Divider spacing="lg" />
+
+      {/* Modals */}
+      <section className="mb-12">
+        <Heading level={2} className="mb-4">
+          Modals
+        </Heading>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Light Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={3} align="start">
+                <HStack gap={2} wrap>
+                  {(["primary", "secondary", "success", "danger", "warning"] as const).map(
+                    (variant) => (
+                      <Button
+                        key={variant}
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          setModalVariant(variant);
+                          setModalTheme("light");
+                          setModalOpen(true);
+                        }}
+                      >
+                        {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                      </Button>
+                    )
+                  )}
+                </HStack>
+                <Text size="sm" color="muted">
+                  Click a button to open a modal with that variant
+                </Text>
+              </VStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Dark Mode - Variants</Text>
+            </CardHeader>
+            <CardBody>
+              <VStack gap={3} align="start">
+                <HStack gap={2} wrap>
+                  {(["primary", "secondary", "success", "danger", "warning"] as const).map(
+                    (variant) => (
+                      <Button
+                        key={variant}
+                        size="sm"
+                        variant="outline"
+                        theme="dark"
+                        onClick={() => {
+                          setModalVariant(variant);
+                          setModalTheme("dark");
+                          setModalOpen(true);
+                        }}
+                      >
+                        {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                      </Button>
+                    )
+                  )}
+                </HStack>
+                <Text size="sm" color="muted" theme="dark">
+                  Click a button to open a modal with that variant
+                </Text>
+              </VStack>
+            </CardBody>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <Card theme="light">
+            <CardHeader>
+              <Text weight="semibold">Sizes</Text>
+            </CardHeader>
+            <CardBody>
+              <HStack gap={2} wrap>
+                {(["sm", "md", "lg"] as const).map((size) => (
+                  <Button
+                    key={size}
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      setModalSize(size);
+                      setModalTheme("light");
+                      setModalOpen(true);
+                    }}
+                  >
+                    {size.toUpperCase()}
+                  </Button>
+                ))}
+              </HStack>
+            </CardBody>
+          </Card>
+
+          <Card theme="dark">
+            <CardHeader>
+              <Text weight="semibold">Sizes</Text>
+            </CardHeader>
+            <CardBody>
+              <HStack gap={2} wrap>
+                {(["sm", "md", "lg"] as const).map((size) => (
+                  <Button
+                    key={size}
+                    size="sm"
+                    variant="outline"
+                    theme="dark"
+                    onClick={() => {
+                      setModalSize(size);
+                      setModalTheme("dark");
+                      setModalOpen(true);
+                    }}
+                  >
+                    {size.toUpperCase()}
+                  </Button>
+                ))}
+              </HStack>
+            </CardBody>
+          </Card>
+        </div>
+      </section>
+
+      {/* Modal Instance */}
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title={`${modalVariant.charAt(0).toUpperCase() + modalVariant.slice(1)} Modal`}
+        variant={modalVariant}
+        size={modalSize}
+        theme={modalTheme}
+      >
+        <VStack gap={4}>
+          <Text>
+            This is a clean, modern modal with a semi-transparent backdrop. It supports
+            keyboard navigation (press Escape to close) and clicking outside to dismiss.
+          </Text>
+          <Text size="sm" color="muted">
+            Current settings: <Code>{modalVariant}</Code> variant, <Code>{modalSize}</Code> size
+          </Text>
+          <HStack gap={2} justify="end">
+            <Button variant="outline" onClick={() => setModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={() => setModalOpen(false)}>
+              Confirm
+            </Button>
+          </HStack>
+        </VStack>
+      </Modal>
     </main>
   );
 }
