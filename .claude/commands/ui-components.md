@@ -38,3 +38,8 @@ Make a UI component according to the [name] and [summary] provided, following th
 
 - Add the component to the `src/app/preview/page.tsx` file, so it can be viewed in the browser, and use multiple variants.
 - Do not add the components to any other page.
+
+## Review the work
+
+- **Invoke the ui-ux-reviewer subagent** to review your work and implement suggestions where needed
+- Iterate on the review process when needed
