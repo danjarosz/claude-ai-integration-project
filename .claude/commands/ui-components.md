@@ -42,4 +42,5 @@ Make a UI component according to the [name] and [summary] provided, following th
 ## Review the work
 
 - **Invoke the ui-ux-reviewer subagent** to review your work and implement suggestions where needed
-- Iterate on the review process when needed
+- If Critical or High priority issues are identified, implement the fixes and re-run the reviewer to verify improvements
+- Continue iterating until no Critical issues remain and High priority issues are addressed
