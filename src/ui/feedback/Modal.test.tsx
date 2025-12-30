@@ -145,7 +145,7 @@ describe("Modal", () => {
         Content
       </Modal>
     );
-    expect(screen.getByRole("dialog")).toHaveClass("max-w-md");
+    expect(screen.getByRole("dialog")).toHaveClass("max-w-lg");
   });
 
   it("should apply lg size styles", () => {
@@ -154,7 +154,7 @@ describe("Modal", () => {
         Content
       </Modal>
     );
-    expect(screen.getByRole("dialog")).toHaveClass("max-w-lg");
+    expect(screen.getByRole("dialog")).toHaveClass("max-w-2xl");
   });
 
   // Theme test
@@ -198,5 +198,49 @@ describe("Modal", () => {
     expect(dialog).toHaveAttribute("aria-labelledby");
     const labelId = dialog.getAttribute("aria-labelledby");
     expect(screen.getByText("Test Title")).toHaveAttribute("id", labelId);
+  });
+
+  // Close button without title tests
+  it("should render close button even without title", () => {
+    render(
+      <Modal open={true} onClose={() => {}}>
+        Content
+      </Modal>
+    );
+    expect(screen.getByLabelText("Close modal")).toBeInTheDocument();
+  });
+
+  it("should call onClose when close button is clicked without title", () => {
+    const handleClose = jest.fn();
+    render(
+      <Modal open={true} onClose={handleClose}>
+        Content
+      </Modal>
+    );
+    fireEvent.click(screen.getByLabelText("Close modal"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  // aria-label tests
+  it("should use aria-label when no title is provided", () => {
+    render(
+      <Modal open={true} onClose={() => {}} aria-label="Confirmation dialog">
+        Content
+      </Modal>
+    );
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveAttribute("aria-label", "Confirmation dialog");
+    expect(dialog).not.toHaveAttribute("aria-labelledby");
+  });
+
+  it("should use aria-labelledby instead of aria-label when title is provided", () => {
+    render(
+      <Modal open={true} onClose={() => {}} title="Test Title" aria-label="Should be ignored">
+        Content
+      </Modal>
+    );
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveAttribute("aria-labelledby");
+    expect(dialog).not.toHaveAttribute("aria-label");
   });
 });

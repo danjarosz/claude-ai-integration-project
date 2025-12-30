@@ -19,8 +19,10 @@ export interface ModalProps extends BaseUIProps {
   open: boolean;
   /** Callback when the modal should close */
   onClose: () => void;
-  /** Modal title */
+  /** Modal title (also used for aria-labelledby) */
   title?: string;
+  /** Accessible label for the dialog (required if no title) */
+  "aria-label"?: string;
   /** Modal variant */
   variant?: ModalVariant;
   /** Modal size */
@@ -52,16 +54,25 @@ const variantStyles: Record<ModalVariant, string> = {
   ),
 };
 
+const headerStyles: Record<ModalVariant, string> = {
+  primary: "border-b border-blue-100 dark:border-blue-900/50",
+  secondary: "border-b border-slate-100 dark:border-slate-800/50",
+  success: "border-b border-green-100 dark:border-green-900/50",
+  danger: "border-b border-red-100 dark:border-red-900/50",
+  warning: "border-b border-amber-100 dark:border-amber-900/50",
+};
+
 const sizeStyles: Record<ModalSize, string> = {
   sm: "max-w-sm",
-  md: "max-w-md",
-  lg: "max-w-lg",
+  md: "max-w-lg",
+  lg: "max-w-2xl",
 };
 
 export function Modal({
   open,
   onClose,
   title,
+  "aria-label": ariaLabel,
   variant = "primary",
   size = "md",
   theme,
@@ -88,24 +99,24 @@ export function Modal({
       // Store the element that triggered the modal
       triggerRef.current = document.activeElement as HTMLElement;
 
-      // Focus the modal or first focusable element
-      const timer = setTimeout(() => {
+      // Focus the close button using requestAnimationFrame for reliable timing
+      const rafId = requestAnimationFrame(() => {
         const closeButton = modalRef.current?.querySelector(
           'button[aria-label="Close modal"]'
         ) as HTMLElement;
         closeButton?.focus();
-      }, 0);
+      });
 
       document.addEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "hidden";
 
       return () => {
-        clearTimeout(timer);
+        cancelAnimationFrame(rafId);
         document.removeEventListener("keydown", handleKeyDown);
         document.body.style.overflow = "";
       };
-    } else if (triggerRef.current) {
-      // Return focus to trigger element
+    } else if (triggerRef.current && document.body.contains(triggerRef.current)) {
+      // Return focus to trigger element only if it's still in the DOM
       triggerRef.current.focus();
     }
   }, [open, handleKeyDown]);
@@ -161,6 +172,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
+        aria-label={!title ? ariaLabel : undefined}
         aria-describedby={contentId}
         data-theme={theme}
         className={cn(
@@ -172,44 +184,50 @@ export function Modal({
           className
         )}
       >
-        {/* Header */}
-        {title && (
-          <div className="mb-4 flex items-center justify-between">
+        {/* Header - always show close button */}
+        <div className={cn(
+          "mb-4 flex items-center justify-between",
+          title && "pb-4",
+          title && headerStyles[variant]
+        )}>
+          {title ? (
             <h2
               id={titleId}
               className="text-lg font-semibold text-gray-900 dark:text-white"
             >
               {title}
             </h2>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close modal"
-              className={cn(
-                "rounded-md p-2.5 text-gray-400 transition-colors",
-                "hover:bg-gray-100 hover:text-gray-600",
-                "dark:hover:bg-zinc-800 dark:hover:text-gray-200",
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-                "dark:focus:ring-offset-zinc-900"
-              )}
+          ) : (
+            <div />
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close modal"
+            className={cn(
+              "rounded-md p-2.5 text-gray-400 transition-colors",
+              "hover:bg-gray-100 hover:text-gray-600",
+              "dark:hover:bg-zinc-800 dark:hover:text-gray-200",
+              "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+              "dark:focus:ring-offset-zinc-900"
+            )}
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
             >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        )}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
 
         {/* Content */}
         <div id={contentId} className="text-gray-700 dark:text-gray-300">
