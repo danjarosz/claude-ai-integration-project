@@ -167,10 +167,13 @@ export type {
 } from "./navigation";
 
 // Feedback
-export { Alert, Spinner, Skeleton, SkeletonText } from "./feedback";
+export { Alert, Spinner, Skeleton, SkeletonText, Modal } from "./feedback";
 export type {
   AlertProps,
   SpinnerProps,
   SkeletonProps,
   SkeletonTextProps,
+  ModalProps,
+  ModalVariant,
+  ModalSize,
 } from "./feedback";
